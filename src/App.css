@@ -27,6 +27,7 @@
     box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
     border-radius: 7px;
     opacity: 0.90;
+    padding-bottom: 1%;
 }
 
 p.score {
@@ -63,11 +64,33 @@ button.answer {
     border-radius: 1rem;
 }
 
+button.disabledAnswer {
+    font-family: 'Fredoka One';
+    font-size: 18px;
+    width: 90%;
+    background-color: lightblue;
+    color: #B2B2B2;
+    padding: 1%;
+    margin-bottom: 2%;
+    border-radius: 1rem;
+}
+
 button.wrongAnswer {
     font-family: 'Fredoka One';
     font-size: 18px;
     width: 90%;
     background-color: indianred;
+    color: #B2B2B2;
+    padding: 1%;
+    margin-bottom: 2%;
+    border-radius: 1rem;
+}
+
+button.correctAnswer {
+    font-family: 'Fredoka One';
+    font-size: 18px;
+    width: 90%;
+    background-color: lightgreen;
     color: #B2B2B2;
     padding: 1%;
     margin-bottom: 2%;

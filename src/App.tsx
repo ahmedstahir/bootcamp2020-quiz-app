@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import QuestionCard from './components/QuestionCard';
 import StartButton from './components/StartButton';
+import NextButton from './components/NextButton';
 import Loader from './components/Loader';
 import { fetchQuestions, Difficulty, QuestionState } from './API';
 import TitleImage from './images/trivia.png'
@@ -56,11 +57,11 @@ function App() {
     }
 
     const nextQuestion = async () => {
-        const nextQuestion = questionNo + 1;
-        if (nextQuestion === TOTAL_QUESTIONS) {
+        const nextQuest = questionNo + 1;
+        if (nextQuest === TOTAL_QUESTIONS) {
             SetTriviaFinished(true);
         } else {
-            SetQuestionNo(nextQuestion);
+            SetQuestionNo(nextQuest);
         }
     }
 
@@ -68,9 +69,6 @@ function App() {
         <div className="wrapper">
             <div className="wrapperCover">
                 <img className="titleImage" src={TitleImage} alt="Fun Trivia" />
-                {triviaFinished &&
-                    <StartButton callback={beginQuiz} />
-                }
                 {!triviaFinished && !loading &&
                     <p className="score">Score: {score} / {TOTAL_QUESTIONS}</p>
                 }
@@ -85,14 +83,11 @@ function App() {
                     callback={verifyAnswer}
                     />
                 }
-                {!loading && !triviaFinished && questionNo !== TOTAL_QUESTIONS - 1 &&
-                    <button
-                        className="Next"
-                        onClick={nextQuestion}
-                        disabled={userAnswers.length <= questionNo}
-                    >
-                        Show me next!
-                    </button>
+                {!loading && !triviaFinished && questionNo !== TOTAL_QUESTIONS - 1 && userAnswers.length > questionNo &&
+                    <NextButton callback={nextQuestion} />
+                }
+                {(triviaFinished || (userAnswers && userAnswers.length === TOTAL_QUESTIONS)) &&
+                    <StartButton callback={beginQuiz} startAgain={userAnswers && userAnswers.length === TOTAL_QUESTIONS} />
                 }
             </div>
     </div>
