@@ -1,5 +1,6 @@
 import React from 'react';
 import { AnswerObject } from '../App'
+import '../App.css';
 
 type Props = {
     questionNumber: number,
@@ -12,17 +13,18 @@ type Props = {
 
 const QuestionCard: React.FC<Props> = ({ questionNumber, totalQuestions, question, answers, userAnswer, callback }) => {
     return (
-        <div>
-            <p className="number">
+        <div className="questionCard">
+            <p className="questionCounter">
                 Question: {questionNumber} of {totalQuestions}
             </p>
-            <p dangerouslySetInnerHTML={{ __html: question }} />
+            <p className="question" dangerouslySetInnerHTML={{ __html: question }} />
             <div>
                 {answers.map(answer => (
                     <div key={answer}>
                         <button
                             disabled={userAnswer ? true : false}
                             value={answer}
+                            className="answer"
                             onClick={callback}>
                             <span dangerouslySetInnerHTML={{ __html: answer }} />
                         </button>

@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import QuestionCard from './components/QuestionCard';
+import StartButton from './components/StartButton';
+import Loader from './components/Loader';
 import { fetchQuestions, Difficulty, QuestionState } from './API';
-import BackgroundImage from './images/quiz.jpg'
+import TitleImage from './images/trivia.png'
+import './App.css';
 
 const TOTAL_QUESTIONS = 10;
 
@@ -62,40 +65,36 @@ function App() {
     }
 
     return (
-        <div style={{
-            width: '100vw', height: '100vh', position: 'absolute', top: '0', left: '0', backgroundImage: `url(${BackgroundImage})`, backgroundSize: '100% 100%'
-        }}>
-            <h1>React Fun Trivia</h1>
-            {triviaFinished &&
-                <button className="begin" onClick={beginQuiz}>
-                    Let's begin!
-                </button>
-            }
-            {!triviaFinished &&
-                <p className="score">Score: {score} / {TOTAL_QUESTIONS}</p>
-            }
-            {loading &&
-                <p>Loading....</p>
-            }
-            {!loading && !triviaFinished &&
-                <QuestionCard
-                questionNumber={questionNo + 1}
-                totalQuestions={TOTAL_QUESTIONS}
-                question={questions[questionNo].question}
-                answers={questions[questionNo].answers}
-                userAnswer={userAnswers ? userAnswers[questionNo] : undefined}
-                callback={verifyAnswer}
-                />
-            }
-            {!loading && !triviaFinished && questionNo !== TOTAL_QUESTIONS - 1 &&
-                <button
-                    className="Next"
-                    onClick={nextQuestion}
-                    disabled={userAnswers.length <= questionNo}
-                >
-                    Show me next!
-                </button>
-            }
+        <div className="wrapper">
+            <div className="wrapperCover">
+                <img className="titleImage" src={TitleImage} alt="Fun Trivia" />
+                {triviaFinished &&
+                    <StartButton callback={beginQuiz} />
+                }
+                {!triviaFinished && !loading &&
+                    <p className="score">Score: {score} / {TOTAL_QUESTIONS}</p>
+                }
+                <Loader open={loading} />
+                {!loading && !triviaFinished &&
+                    <QuestionCard
+                    questionNumber={questionNo + 1}
+                    totalQuestions={TOTAL_QUESTIONS}
+                    question={questions[questionNo].question}
+                    answers={questions[questionNo].answers}
+                    userAnswer={userAnswers ? userAnswers[questionNo] : undefined}
+                    callback={verifyAnswer}
+                    />
+                }
+                {!loading && !triviaFinished && questionNo !== TOTAL_QUESTIONS - 1 &&
+                    <button
+                        className="Next"
+                        onClick={nextQuestion}
+                        disabled={userAnswers.length <= questionNo}
+                    >
+                        Show me next!
+                    </button>
+                }
+            </div>
     </div>
   );
 }

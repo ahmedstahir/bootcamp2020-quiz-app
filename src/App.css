@@ -1,0 +1,75 @@
+.wrapper {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url("images/quiz.jpg");
+    background-size: 100% 100%;
+    text-align: center;
+}
+
+.wrapperCover {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.titleImage {
+    width: 50%;
+    margin-top: 1%;
+}
+
+.questionCard {
+    margin-left: 25%;
+    margin-right: 25%;
+    background-color: #424242;
+    box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
+    border-radius: 7px;
+    opacity: 0.90;
+}
+
+p.score {
+    font-family: 'Rowdies';
+    font-size: 32px;
+    color: lightblue;
+    margin: 0;
+}
+
+p.questionCounter {
+    font-family: 'Acme';
+    font-size: 24px;
+    color: lightblue;
+    padding-top: 2%;
+}
+
+p.question {
+    font-family: 'Acme';
+    font-size: 20px;
+    color: lightblue;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+button.answer {
+    font-family: 'Fredoka One';
+    font-size: 18px;
+    width: 90%;
+    background-color: lightblue;
+    color: #424242;
+    padding: 1%;
+    margin-bottom: 2%;
+    cursor: pointer;
+    border-radius: 1rem;
+}
+
+button.wrongAnswer {
+    font-family: 'Fredoka One';
+    font-size: 18px;
+    width: 90%;
+    background-color: indianred;
+    color: #B2B2B2;
+    padding: 1%;
+    margin-bottom: 2%;
+    border-radius: 1rem;
+}
