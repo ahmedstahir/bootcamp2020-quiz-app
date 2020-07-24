@@ -65,10 +65,17 @@ function App() {
         }
     }
 
+    const topMargin = userAnswers.length === 0 && triviaFinished ? '30vh' : '1vh';
+    const imgWidth = userAnswers.length === 0 && triviaFinished ? '80vw' : '50vw';
+
     return (
         <div className="wrapper">
             <div className="wrapperCover">
-                <img className="titleImage" src={TitleImage} alt="Fun Trivia" />
+                <img
+                    style={{ marginTop: `${topMargin}`, width: `${imgWidth}` }}
+                    src={TitleImage}
+                    alt="Fun Trivia"
+                />
                 {!triviaFinished && !loading &&
                     <p className="score">Score: {score} / {TOTAL_QUESTIONS}</p>
                 }
@@ -86,7 +93,7 @@ function App() {
                 {!loading && !triviaFinished && questionNo !== TOTAL_QUESTIONS - 1 && userAnswers.length > questionNo &&
                     <NextButton callback={nextQuestion} />
                 }
-                {(triviaFinished || (userAnswers && userAnswers.length === TOTAL_QUESTIONS)) &&
+                {(!loading && (triviaFinished || (userAnswers && userAnswers.length === TOTAL_QUESTIONS))) &&
                     <StartButton callback={beginQuiz} startAgain={userAnswers && userAnswers.length === TOTAL_QUESTIONS} />
                 }
             </div>
